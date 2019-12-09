@@ -40,43 +40,29 @@ public class Test_Suite_Creating_Project {
 //        driver.close();
     }
 
-    @Test
-    public void login_first_test() {
+    public void Login(){
         driver.get(url);
         WebElement searchInput = driver.findElement(By.name("username"));
         searchInput.sendKeys("rukovoditel");
         searchInput = driver.findElement(By.name("password"));
         searchInput.sendKeys("vse456ru");
         searchInput.sendKeys(Keys.ENTER);
-        Assert.assertTrue(driver.getTitle().startsWith("Rukovoditel | Dashboard"));
-        driver.quit();
     }
 
-    @Test
-    public void login_second_test() {
-        driver.get(url);
-        WebElement searchInput = driver.findElement(By.name("username"));
-        searchInput.sendKeys("testNeprejde");
-        searchInput = driver.findElement(By.name("password"));
-        searchInput.sendKeys("vse456ru");
-        searchInput.sendKeys(Keys.ENTER);
-        Assert.assertTrue(!driver.getTitle().startsWith("Rukovoditel | Dashboard"));
-        driver.quit();
-    }
 
     @Test
     public void logout_third_test() {
-        driver.get(url);
-        WebElement searchInput = driver.findElement(By.name("username"));
-        searchInput.sendKeys("rukovoditel");
-        searchInput = driver.findElement(By.name("password"));
-        searchInput.sendKeys("vse456ru");
-        searchInput.sendKeys(Keys.ENTER);
-        driver.findElement(By.cssSelector(".fa-angle-down")).click();
-        driver.findElement(By.cssSelector(".fa-angle-down")).click();
-        WebDriverWait wait = new WebDriverWait(driver, 2);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Logoff")));
-        driver.findElement(By.linkText("Logoff")).click();
+        Login();
+        driver.findElement(By.cssSelector("li:nth-child(4) .title:nth-child(2)")).click();
+        driver.findElement(By.cssSelector(".btn-primary")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-primary-modal-action")));
+        driver.findElement(By.cssSelector(".btn-primary-modal-action")).click();
+        wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".alert")));
+        Assert.assertTrue(driver.findElement(By.cssSelector(".alert")).isDisplayed());
+        driver.findElement(By.cssSelector(".btn:nth-child(4)")).click();
         driver.quit();
     }
 }
