@@ -38,7 +38,7 @@ public class AppTest {
         cho.addArguments("--disable-gpu");
         cho.addArguments("--disable-extensions");
         //driver = new ChromeDriver(cho);
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
     }
 
     @After
@@ -55,6 +55,18 @@ public class AppTest {
         searchInput.sendKeys("vse456ru");
         searchInput.sendKeys(Keys.ENTER);
         Assert.assertTrue(driver.getTitle().startsWith("Rukovoditel | Dashboard"));
+        driver.quit();
+    }
+
+    @Test
+    public void login_second_test() {
+        driver.get(url);
+        WebElement searchInput = driver.findElement(By.name("username"));
+        searchInput.sendKeys("testNeprejde");
+        searchInput = driver.findElement(By.name("password"));
+        searchInput.sendKeys("vse456ru");
+        searchInput.sendKeys(Keys.ENTER);
+        Assert.assertTrue(!driver.getTitle().startsWith("Rukovoditel | Dashboard"));
         driver.quit();
     }
 }
