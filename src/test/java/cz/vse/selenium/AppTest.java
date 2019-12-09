@@ -69,4 +69,20 @@ public class AppTest {
         Assert.assertTrue(!driver.getTitle().startsWith("Rukovoditel | Dashboard"));
         driver.quit();
     }
+
+    @Test
+    public void logout_third_test() {
+        driver.get(url);
+        WebElement searchInput = driver.findElement(By.name("username"));
+        searchInput.sendKeys("rukovoditel");
+        searchInput = driver.findElement(By.name("password"));
+        searchInput.sendKeys("vse456ru");
+        searchInput.sendKeys(Keys.ENTER);
+        driver.findElement(By.cssSelector(".fa-angle-down")).click();
+        driver.findElement(By.cssSelector(".fa-angle-down")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Logoff")));
+        driver.findElement(By.linkText("Logoff")).click();
+        driver.quit();
+    }
 }
