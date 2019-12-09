@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class Test_Suite_Creating_Project {
 
 
     @Test
-    public void logout_third_test() {
+    public void bad_project_fourth_test() {
         Login();
         driver.findElement(By.cssSelector("li:nth-child(4) .title:nth-child(2)")).click();
         driver.findElement(By.cssSelector(".btn-primary")).click();
@@ -65,4 +66,26 @@ public class Test_Suite_Creating_Project {
         driver.findElement(By.cssSelector(".btn:nth-child(4)")).click();
         driver.quit();
     }
+
+    @Test
+    public void project_test() {
+        Login();
+        driver.findElement(By.cssSelector("li:nth-child(4) .title:nth-child(2)")).click();
+        driver.findElement(By.cssSelector(".btn-primary")).click();
+        WebElement searchInput = driver.findElement(By.id("fields_158"));
+        searchInput.sendKeys("vism00");
+        driver.findElement(By.id("fields_156"));
+        Select select = new Select(driver.findElement(By.id("fields_156")));
+        select.selectByIndex(1);
+
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-primary-modal-action")));
+        driver.findElement(By.cssSelector(".btn-primary-modal-action")).click();
+        wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".alert")));
+        Assert.assertTrue(driver.findElement(By.cssSelector(".alert")).isDisplayed());
+        driver.findElement(By.cssSelector(".btn:nth-child(4)")).click();
+        driver.quit();
+    }
+
 }
