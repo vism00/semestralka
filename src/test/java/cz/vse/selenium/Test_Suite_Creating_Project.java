@@ -77,9 +77,13 @@ public class Test_Suite_Creating_Project {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fields_158")));
         WebElement searchInput = driver.findElement(By.id("fields_158"));
         searchInput.sendKeys("vism00");
+        //status
+        driver.findElement(By.id("fields_157"));
+        Select select = new Select(driver.findElement(By.id("fields_157")));
+        select.selectByIndex(0);
         //priority: high
         driver.findElement(By.id("fields_156"));
-        Select select = new Select(driver.findElement(By.id("fields_156")));
+        select = new Select(driver.findElement(By.id("fields_156")));
         select.selectByIndex(1);
         //Status: new
         //Assert.assertTrue(driver.findElement(By.id("fields_157")).isDisplayed());
