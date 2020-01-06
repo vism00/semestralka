@@ -57,6 +57,7 @@ public class Test_Suite_User_Login {
         Assert.assertTrue(driver.getTitle().startsWith("Rukovoditel | Dashboard"));
         driver.quit();
     }
+    
 
     @Test
     public void login_second_test() {
