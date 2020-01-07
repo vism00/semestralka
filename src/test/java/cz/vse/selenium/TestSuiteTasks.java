@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Unit test for simple App.
  */
-public class Test_Suite_Tasks {
+public class TestSuiteTasks {
     private ChromeDriver driver;
     private String url="https://digitalnizena.cz/rukovoditel/index.php?module=users/login";
 
@@ -74,6 +74,80 @@ public class Test_Suite_Tasks {
 
     @Test
     public void new_task_sixth_test() {
+        //preconditions
+        Login();
+        NewProject();
+
+        driver.findElement(By.cssSelector(".btn-primary")).click();
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fields_168")));
+
+        //name
+        WebElement searchInput = driver.findElement(By.id("fields_168"));
+        searchInput.sendKeys("vism00_task");
+
+        //type
+        driver.findElement(By.id("fields_167"));
+        Select select = new Select(driver.findElement(By.id("fields_167")));
+        select.selectByIndex(1);
+
+        //status
+        driver.findElement(By.id("fields_169"));
+        select = new Select(driver.findElement(By.id("fields_169")));
+        select.selectByIndex(0);
+
+        //priority
+        driver.findElement(By.id("fields_170"));
+        select = new Select(driver.findElement(By.id("fields_170")));
+        select.selectByIndex(2);
+
+        //description
+        driver.switchTo().frame(driver.findElement(By.tagName("iframe")));
+        driver.findElement(By.tagName("body")).sendKeys("Description test");
+        driver.switchTo().defaultContent();
+        driver.findElement(By.className("btn-primary-modal-action")).click();
+
+        //Ičko
+        wait = new WebDriverWait(driver, 1);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
+        List<WebElement> elm = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
+        List<WebElement> tabulka = elm.get(1).findElements(By.tagName("td"));
+        List<WebElement> hodnota = tabulka.get(1).findElements(By.tagName("a"));
+        hodnota.get(2).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-bordered table-hover table-item-details'] tr")));
+        elm = driver.findElements(By.cssSelector("[class='table table-bordered table-hover table-item-details'] tr"));
+        WebElement task_name = driver.findElement(By.className("caption"));
+        Assert.assertEquals("vism00_task", task_name.getText());
+        WebElement task_description = driver.findElement(By.className("fieldtype_textarea_wysiwyg"));
+        Assert.assertEquals("Description test", task_description.getText());
+
+        //Task
+        tabulka = elm.get(3).findElements(By.tagName("td"));
+        hodnota = tabulka.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("Task", hodnota.get(0).getText());
+        //New
+        tabulka = elm.get(4).findElements(By.tagName("td"));
+        hodnota = tabulka.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("New", hodnota.get(0).getText());
+        //Medium
+        tabulka = elm.get(5).findElements(By.tagName("td"));
+        hodnota = tabulka.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("Medium", hodnota.get(0).getText());
+
+        driver.executeScript("window.history.go(-1)");
+        wait = new WebDriverWait(driver, 1);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
+        elm = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
+        tabulka = elm.get(1).findElements(By.tagName("td"));
+        hodnota = tabulka.get(1).findElements(By.tagName("a"));
+        hodnota.get(0).click();
+        wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("btn-primary-modal-action")));
+        driver.findElement(By.className("btn-primary-modal-action")).click();
+    }
+
+    @Test
+    public void add_7_tasks_seventh_test() {
         //preconditions
         Login();
         NewProject();

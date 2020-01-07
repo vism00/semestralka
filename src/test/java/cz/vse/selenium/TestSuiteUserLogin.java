@@ -23,7 +23,7 @@ import java.util.UUID;
 /**
  * Unit test for simple App.
  */
-public class Test_Suite_User_Login {
+public class TestSuiteUserLogin {
     private ChromeDriver driver;
     private String url="https://digitalnizena.cz/rukovoditel/index.php?module=users/login";
 
@@ -55,7 +55,7 @@ public class Test_Suite_User_Login {
         Assert.assertTrue(driver.getTitle().startsWith("Rukovoditel | Dashboard"));
         driver.quit();
     }
-    
+
     @Test
     public void login_second_test() {
         driver.get(url);
