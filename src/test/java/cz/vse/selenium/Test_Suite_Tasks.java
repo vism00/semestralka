@@ -14,6 +14,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Date;
 
 /**
  * Unit test for simple App.
@@ -75,12 +78,14 @@ public class Test_Suite_Tasks {
 
     @Test
     public void new_task_sixth_test() {
+        //preconditions
         Login();
         NewProject();
 
         driver.findElement(By.cssSelector(".btn-primary")).click();
         WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fields_168")));
+
         //name
         WebElement searchInput = driver.findElement(By.id("fields_168"));
         searchInput.sendKeys("vism00_task");
@@ -105,6 +110,33 @@ public class Test_Suite_Tasks {
         driver.findElement(By.tagName("body")).sendKeys("Description test");
         driver.switchTo().defaultContent();
         driver.findElement(By.className("btn-primary-modal-action")).click();
+
+        wait = new WebDriverWait(driver, 1);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
+        List<WebElement> elements = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
+        List<WebElement> cells = elements.get(1).findElements(By.tagName("td"));
+        List<WebElement> obsah = cells.get(1).findElements(By.tagName("a"));
+        obsah.get(2).click();
+
+        WebElement nazev = driver.findElement(By.className("caption"));
+        Assert.assertEquals("vism00_task", nazev.getText());
+        WebElement desc = driver.findElement(By.className("fieldtype_textarea_wysiwyg"));
+        Assert.assertEquals("Description test", desc.getText());
+
+        // Kontrola typu - Task
+        cells = elements.get(3).findElements(By.tagName("td"));
+        obsah = cells.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("Task", obsah.get(0).getText());
+
+        // Kontrola status - New
+        cells = elements.get(4).findElements(By.tagName("td"));
+        obsah = cells.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("New", obsah.get(0).getText());
+
+        // Kontrola priority - Medium
+        cells = elements.get(5).findElements(By.tagName("td"));
+        obsah = cells.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("Medium", obsah.get(0).getText());
 
 
 
