@@ -14,9 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Date;
 
 /**
  * Unit test for simple App.
@@ -35,7 +33,6 @@ public class Test_Suite_Tasks {
         cho.addArguments("window-size=1200,1100");
         cho.addArguments("--disable-gpu");
         cho.addArguments("--disable-extensions");
-        //driver = new ChromeDriver(cho);
         driver.manage().window().maximize();
     }
 
@@ -70,7 +67,6 @@ public class Test_Suite_Tasks {
         select = new Select(driver.findElement(By.id("fields_156")));
         select.selectByIndex(1);
     //Status: new
-    //Assert.assertTrue(driver.findElement(By.id("fields_157")).isDisplayed());
         driver.findElement(By.id("fields_159")).click();
         driver.findElement(By.cssSelector("td[class='active day']")).click();
         driver.findElement(By.className("btn-primary-modal-action")).click();
@@ -114,39 +110,39 @@ public class Test_Suite_Tasks {
         //Ičko
         wait = new WebDriverWait(driver, 1);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
-        List<WebElement> elements = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
-        List<WebElement> cells = elements.get(1).findElements(By.tagName("td"));
-        List<WebElement> obsah = cells.get(1).findElements(By.tagName("a"));
-        obsah.get(2).click();
-
+        List<WebElement> elm = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
+        List<WebElement> tabulka = elm.get(1).findElements(By.tagName("td"));
+        List<WebElement> hodnota = tabulka.get(1).findElements(By.tagName("a"));
+        hodnota.get(2).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-bordered table-hover table-item-details'] tr")));
-        elements = driver.findElements(By.cssSelector("[class='table table-bordered table-hover table-item-details'] tr"));
+        elm = driver.findElements(By.cssSelector("[class='table table-bordered table-hover table-item-details'] tr"));
+        WebElement task_name = driver.findElement(By.className("caption"));
+        Assert.assertEquals("vism00_task", task_name.getText());
+        WebElement task_description = driver.findElement(By.className("fieldtype_textarea_wysiwyg"));
+        Assert.assertEquals("Description test", task_description.getText());
 
-        WebElement nazev = driver.findElement(By.className("caption"));
-        Assert.assertEquals("vism00_task", nazev.getText());
-        WebElement desc = driver.findElement(By.className("fieldtype_textarea_wysiwyg"));
-        Assert.assertEquals("Description test", desc.getText());
+        //Task
+        tabulka = elm.get(3).findElements(By.tagName("td"));
+        hodnota = tabulka.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("Task", hodnota.get(0).getText());
+        //New
+        tabulka = elm.get(4).findElements(By.tagName("td"));
+        hodnota = tabulka.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("New", hodnota.get(0).getText());
+        //Medium
+        tabulka = elm.get(5).findElements(By.tagName("td"));
+        hodnota = tabulka.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("Medium", hodnota.get(0).getText());
 
-        // Kontrola typu - Task
-        cells = elements.get(3).findElements(By.tagName("td"));
-        obsah = cells.get(0).findElements(By.tagName("div"));
-        Assert.assertEquals("Task", obsah.get(0).getText());
-
-        // Kontrola status - New
-        cells = elements.get(4).findElements(By.tagName("td"));
-        obsah = cells.get(0).findElements(By.tagName("div"));
-        Assert.assertEquals("New", obsah.get(0).getText());
-
-        // Kontrola priority - Medium
-        cells = elements.get(5).findElements(By.tagName("td"));
-        obsah = cells.get(0).findElements(By.tagName("div"));
-        Assert.assertEquals("Medium", obsah.get(0).getText());
-
-
-
-
-
-
+        driver.executeScript("window.history.go(-1)");
+        wait = new WebDriverWait(driver, 1);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
+        elm = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
+        tabulka = elm.get(1).findElements(By.tagName("td"));
+        hodnota = tabulka.get(1).findElements(By.tagName("a"));
+        hodnota.get(0).click();
+        wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("btn-primary-modal-action")));
+        driver.findElement(By.className("btn-primary-modal-action")).click();
     }
-
 }

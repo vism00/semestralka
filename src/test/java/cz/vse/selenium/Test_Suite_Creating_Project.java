@@ -32,13 +32,11 @@ public class Test_Suite_Creating_Project {
         cho.addArguments("window-size=1200,1100");
         cho.addArguments("--disable-gpu");
         cho.addArguments("--disable-extensions");
-        //driver = new ChromeDriver(cho);
         driver.manage().window().maximize();
     }
 
     @After
     public void tearDown() {
-//        driver.close();
     }
 
     public void Login(){
@@ -49,7 +47,6 @@ public class Test_Suite_Creating_Project {
         searchInput.sendKeys("vse456ru");
         searchInput.sendKeys(Keys.ENTER);
     }
-
 
     @Test
     public void bad_project_fourth_test() {
@@ -103,24 +100,5 @@ public class Test_Suite_Creating_Project {
         wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn:nth-child(3)")));
         driver.findElement(By.cssSelector(".btn:nth-child(3)")).click();
-
-
-
-/*
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-
-
-        searchInput.sendKeys("vism00");
-
-
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-primary-modal-action")));
-        driver.findElement(By.cssSelector(".btn-primary-modal-action")).click();
-        wait = new WebDriverWait(driver, 3);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".alert")));
-        Assert.assertTrue(driver.findElement(By.cssSelector(".alert")).isDisplayed());
-        driver.findElement(By.cssSelector(".btn:nth-child(4)")).click();
-        driver.quit();*/
     }
-
 }

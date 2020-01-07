@@ -37,13 +37,11 @@ public class Test_Suite_User_Login {
         cho.addArguments("window-size=1200,1100");
         cho.addArguments("--disable-gpu");
         cho.addArguments("--disable-extensions");
-        //driver = new ChromeDriver(cho);
         driver.manage().window().maximize();
     }
 
     @After
     public void tearDown() {
-//        driver.close();
     }
 
     @Test
@@ -57,8 +55,7 @@ public class Test_Suite_User_Login {
         Assert.assertTrue(driver.getTitle().startsWith("Rukovoditel | Dashboard"));
         driver.quit();
     }
-
-
+    
     @Test
     public void login_second_test() {
         driver.get(url);
