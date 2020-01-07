@@ -111,12 +111,16 @@ public class Test_Suite_Tasks {
         driver.switchTo().defaultContent();
         driver.findElement(By.className("btn-primary-modal-action")).click();
 
+        //Ičko
         wait = new WebDriverWait(driver, 1);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
         List<WebElement> elements = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
         List<WebElement> cells = elements.get(1).findElements(By.tagName("td"));
         List<WebElement> obsah = cells.get(1).findElements(By.tagName("a"));
         obsah.get(2).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-bordered table-hover table-item-details'] tr")));
+        elements = driver.findElements(By.cssSelector("[class='table table-bordered table-hover table-item-details'] tr"));
 
         WebElement nazev = driver.findElement(By.className("caption"));
         Assert.assertEquals("vism00_task", nazev.getText());
