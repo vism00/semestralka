@@ -167,5 +167,19 @@ public class TestSuiteTasks {
             driver.findElement(By.className("btn-primary-modal-action")).click();
         }
 
+        //3 tasky
+        WebDriverWait wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
+        List<WebElement> elm = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
+        Assert.assertTrue(elm.size() == 4);
+
+        //zmena stavu
+        driver.findElement(By.className("filters-preview-condition-include")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='chosen-choices'] a")));
+        List<WebElement> sort = driver.findElements(By.cssSelector("[class='chosen-choices'] a"));
+        sort.get(1).click();
+        driver.findElement(By.className("btn-primary-modal-action")).click();
+
+        
     }
 }
