@@ -180,6 +180,18 @@ public class TestSuiteTasks {
         sort.get(1).click();
         driver.findElement(By.className("btn-primary-modal-action")).click();
 
+        //2 tasky
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
+        elm = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
+        Assert.assertTrue(elm.size() == 3);
+
+        driver.findElement(By.className("filters-preview-condition-include")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='chosen-choices'] a")));
+        sort = driver.findElements(By.cssSelector("[class='chosen-choices'] a"));
+        sort.get(1).click();
+        sort.get(0).click();
+        driver.findElement(By.className("btn-primary-modal-action")).click();
+
         
     }
 }
