@@ -192,6 +192,10 @@ public class TestSuiteTasks {
         sort.get(0).click();
         driver.findElement(By.className("btn-primary-modal-action")).click();
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
+        elm = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
+        Assert.assertTrue(elm.size() == 8);
+
         
     }
 }
