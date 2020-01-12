@@ -83,7 +83,6 @@ public class TestSuiteCreatingProject {
         select = new Select(driver.findElement(By.id("fields_156")));
         select.selectByIndex(1);
         //Status: new
-        //Assert.assertTrue(driver.findElement(By.id("fields_157")).isDisplayed());
         driver.findElement(By.id("fields_159")).click();
         driver.findElement(By.cssSelector("td[class='active day']")).click();
         driver.findElement(By.className("btn-primary-modal-action")).click();

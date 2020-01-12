@@ -38,7 +38,6 @@ public class TestSuiteTasks {
 
     @After
     public void tearDown() {
-//        driver.close();
     }
 
     public void Login(){
@@ -111,9 +110,9 @@ public class TestSuiteTasks {
         wait = new WebDriverWait(driver, 1);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
         List<WebElement> elm = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
-        List<WebElement> tabulka = elm.get(1).findElements(By.tagName("td"));
-        List<WebElement> hodnota = tabulka.get(1).findElements(By.tagName("a"));
-        hodnota.get(2).click();
+        List<WebElement> table = elm.get(1).findElements(By.tagName("td"));
+        List<WebElement> value = table.get(1).findElements(By.tagName("a"));
+        value.get(2).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-bordered table-hover table-item-details'] tr")));
         elm = driver.findElements(By.cssSelector("[class='table table-bordered table-hover table-item-details'] tr"));
         WebElement task_name = driver.findElement(By.className("caption"));
@@ -122,25 +121,25 @@ public class TestSuiteTasks {
         Assert.assertEquals("Description test", task_description.getText());
 
         //Task
-        tabulka = elm.get(3).findElements(By.tagName("td"));
-        hodnota = tabulka.get(0).findElements(By.tagName("div"));
-        Assert.assertEquals("Task", hodnota.get(0).getText());
+        table = elm.get(3).findElements(By.tagName("td"));
+        value = table.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("Task", value.get(0).getText());
         //New
-        tabulka = elm.get(4).findElements(By.tagName("td"));
-        hodnota = tabulka.get(0).findElements(By.tagName("div"));
-        Assert.assertEquals("New", hodnota.get(0).getText());
+        table = elm.get(4).findElements(By.tagName("td"));
+        value = table.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("New", value.get(0).getText());
         //Medium
-        tabulka = elm.get(5).findElements(By.tagName("td"));
-        hodnota = tabulka.get(0).findElements(By.tagName("div"));
-        Assert.assertEquals("Medium", hodnota.get(0).getText());
+        table = elm.get(5).findElements(By.tagName("td"));
+        value = table.get(0).findElements(By.tagName("div"));
+        Assert.assertEquals("Medium", value.get(0).getText());
 
         driver.executeScript("window.history.go(-1)");
         wait = new WebDriverWait(driver, 1);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
         elm = driver.findElements(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr"));
-        tabulka = elm.get(1).findElements(By.tagName("td"));
-        hodnota = tabulka.get(1).findElements(By.tagName("a"));
-        hodnota.get(0).click();
+        table = elm.get(1).findElements(By.tagName("td"));
+        value = table.get(1).findElements(By.tagName("a"));
+        value.get(0).click();
         wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("btn-primary-modal-action")));
         driver.findElement(By.className("btn-primary-modal-action")).click();
