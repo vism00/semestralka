@@ -40,40 +40,49 @@ public class TestSuiteUserLogin {
 
     @Test
     public void login_first_test() {
+        //GIVEN
         driver.get(url);
+        //WHEN
         WebElement searchInput = driver.findElement(By.name("username"));
         searchInput.sendKeys("rukovoditel");
         searchInput = driver.findElement(By.name("password"));
         searchInput.sendKeys("vse456ru");
         searchInput.sendKeys(Keys.ENTER);
+        //THEN
         Assert.assertTrue(driver.getTitle().startsWith("Rukovoditel | Dashboard"));
         driver.quit();
     }
 
     @Test
     public void login_second_test() {
+        //GIVEN
         driver.get(url);
+        //WHEN
         WebElement searchInput = driver.findElement(By.name("username"));
         searchInput.sendKeys("testNeprejde");
         searchInput = driver.findElement(By.name("password"));
         searchInput.sendKeys("vse456ru");
         searchInput.sendKeys(Keys.ENTER);
+        //THEN
         Assert.assertTrue(!driver.getTitle().startsWith("Rukovoditel | Dashboard"));
         driver.quit();
     }
 
     @Test
     public void logout_third_test() {
+        //GIVEN
         driver.get(url);
         WebElement searchInput = driver.findElement(By.name("username"));
         searchInput.sendKeys("rukovoditel");
         searchInput = driver.findElement(By.name("password"));
         searchInput.sendKeys("vse456ru");
         searchInput.sendKeys(Keys.ENTER);
+        //WHEN
         driver.findElement(By.cssSelector(".fa-angle-down")).click();
         driver.findElement(By.cssSelector(".fa-angle-down")).click();
         WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Logoff")));
+        //THEN
         driver.findElement(By.linkText("Logoff")).click();
         driver.quit();
     }
