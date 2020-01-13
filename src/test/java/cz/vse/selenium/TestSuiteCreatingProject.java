@@ -50,15 +50,17 @@ public class TestSuiteCreatingProject {
 
     @Test
     public void bad_project_fourth_test() {
+        //GIVEN
         Login();
+        //WHEN
         driver.findElement(By.cssSelector("li:nth-child(4) .title:nth-child(2)")).click();
         driver.findElement(By.cssSelector(".btn-primary")).click();
-
         WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-primary-modal-action")));
         driver.findElement(By.cssSelector(".btn-primary-modal-action")).click();
         wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".alert")));
+        //THEN
         Assert.assertTrue(driver.findElement(By.cssSelector(".alert")).isDisplayed());
         driver.findElement(By.cssSelector(".btn:nth-child(4)")).click();
         driver.quit();
@@ -66,7 +68,9 @@ public class TestSuiteCreatingProject {
 
     @Test
     public void new_project_fifth_test() {
+        //GIVEN
         Login();
+        //WHEN
         driver.findElement(By.cssSelector("li:nth-child(4) .title:nth-child(2)")).click();
         driver.findElement(By.cssSelector(".btn-primary")).click();
         //Name: xname
@@ -86,13 +90,12 @@ public class TestSuiteCreatingProject {
         driver.findElement(By.id("fields_159")).click();
         driver.findElement(By.cssSelector("td[class='active day']")).click();
         driver.findElement(By.className("btn-primary-modal-action")).click();
-
         driver.findElement(By.xpath("//a[contains(text(),'vism00')]")).click();
-
         driver.findElement(By.cssSelector(".btn-default:nth-child(1)")).click();
         driver.findElement(By.cssSelector(".btn-default:nth-child(1)")).click();
         wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-group li:nth-child(2) > a")));
+        //THEN
         driver.findElement(By.cssSelector(".btn-group li:nth-child(2) > a")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("uniform-delete_confirm")));
         driver.findElement(By.id("delete_confirm")).click();

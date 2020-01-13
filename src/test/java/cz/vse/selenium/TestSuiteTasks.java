@@ -57,7 +57,7 @@ public class TestSuiteTasks {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fields_158")));
     WebElement searchInput = driver.findElement(By.id("fields_158"));
         searchInput.sendKeys("vism00");
-        //status
+    //status
         driver.findElement(By.id("fields_157"));
         Select select = new Select(driver.findElement(By.id("fields_157")));
         select.selectByIndex(0);
@@ -73,10 +73,11 @@ public class TestSuiteTasks {
 
     @Test
     public void new_task_sixth_test() {
+        //GIVEN
         //preconditions
         Login();
         NewProject();
-
+        //WHEN
         driver.findElement(By.cssSelector(".btn-primary")).click();
         WebDriverWait wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fields_168")));
@@ -105,7 +106,7 @@ public class TestSuiteTasks {
         driver.findElement(By.tagName("body")).sendKeys("Description test");
         driver.switchTo().defaultContent();
         driver.findElement(By.className("btn-primary-modal-action")).click();
-
+        //THEN
         //Ičko
         wait = new WebDriverWait(driver, 1);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
@@ -124,10 +125,12 @@ public class TestSuiteTasks {
         table = elm.get(3).findElements(By.tagName("td"));
         value = table.get(0).findElements(By.tagName("div"));
         Assert.assertEquals("Task", value.get(0).getText());
+
         //New
         table = elm.get(4).findElements(By.tagName("td"));
         value = table.get(0).findElements(By.tagName("div"));
         Assert.assertEquals("New", value.get(0).getText());
+
         //Medium
         table = elm.get(5).findElements(By.tagName("td"));
         value = table.get(0).findElements(By.tagName("div"));
@@ -147,10 +150,11 @@ public class TestSuiteTasks {
 
     @Test
     public void add_7_tasks_seventh_test() {
+        //GIVEN
         //preconditions
         Login();
         NewProject();
-
+        //WHEN
         for(int i = 0;i<7;i++)
         {
             driver.findElement(By.className("btn-primary")).click();
@@ -165,7 +169,7 @@ public class TestSuiteTasks {
             driver.switchTo().defaultContent();
             driver.findElement(By.className("btn-primary-modal-action")).click();
         }
-
+        //THEN
         //3 tasky
         WebDriverWait wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[class='table table-striped table-bordered table-hover'] tr")));
