@@ -102,5 +102,6 @@ public class TestSuiteCreatingProject {
         wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn:nth-child(3)")));
         driver.findElement(By.cssSelector(".btn:nth-child(3)")).click();
+        driver.quit();
     }
 }

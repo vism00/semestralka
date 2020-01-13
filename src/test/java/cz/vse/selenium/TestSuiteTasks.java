@@ -146,6 +146,7 @@ public class TestSuiteTasks {
         wait = new WebDriverWait(driver, 2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("btn-primary-modal-action")));
         driver.findElement(By.className("btn-primary-modal-action")).click();
+        driver.quit();
     }
 
     @Test
@@ -207,5 +208,6 @@ public class TestSuiteTasks {
         driver.findElement(By.linkText("Delete")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("btn-primary-modal-action")));
         driver.findElement(By.className("btn-primary-modal-action")).click();
+        driver.quit();
     }
 }
