@@ -26,7 +26,7 @@ public class TestSuiteTasks {
     @Before
     public void init() throws IOException {
         //System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-        driver = new ChromeDriver();
+        //driver = new ChromeDriver();
         ChromeOptions cho = new ChromeOptions();
         cho.addArguments("--headless");
         cho.addArguments("start-maximized");
